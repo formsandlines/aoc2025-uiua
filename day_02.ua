@@ -20,3 +20,18 @@ Parse ← ⊜(□InterRange°⊟ ⊜⋕⊸≠@-)×⊸⊃(≠@,)(≠@\n)
   ⍤⤙=1227775554 F Ex  # passed
   ⍤⤙=19574776074 F In # passed, bit slow
 └─╴
+
+┌─╴Part₂
+  EqualsPart ← (
+    °/×⊸⧻⊸°⋕     # find all prime factors of the number’s length
+    ≡↻⊙¤°⊏       # transform into a matrix of all their rotations
+    ≡(⊂⊃⊢(/×↘₁)) # transform into tuples: [prefix, rest product]
+    ◴⊂⊸≡⇌◴       # join with reverse tuples & remove duplicates
+    ≡(=1/↧⧈≍↯)⊙¤ # use tuples as shapes to reshape the original number str. and check for equal rows
+    ⨬0∘/↥        # return n on match, else 0
+  )
+  F ← /+≡◇(/+▽⊸≠0≡(⨬0EqualsPart⊸>₉)) Parse
+
+  ⍤⤙=4174379265 F Ex  # passed
+  ⍤⤙=25912654282 F In # passed, bit slow
+└─╴
