@@ -58,3 +58,6 @@ Parse ← (
 # - I like using uiua.org/pad for some interactive sketches before writing a clean solution in my editor
 # - `°⊂` puts head and tail of an array on the stack, which could have been used here to split direction and distance
 # - could use predicate matches more intelligently for switches instead of using `⨬`
+# - the “wrench” `-⊸¬` turns boolean list into list of -1/1:
+# - `°×` does the same as `⊙⌵⊸±`
+# - `◿100\+` would have been shorter & faster than `\(◿₁₀₀+)`
