@@ -34,4 +34,31 @@ Parse ← ⊜≡⋕⊸≠@\n
 └─╴
 
 ┌─╴Part₂
+  D ← 12
+  MaxSeq ← (
+    ⊸⍖        # get descending sort indices
+    ⊸(˜--₁⊸⧻) # remaining digits for each index
+    ⇌⇡D       # remaining digits for each joltage position
+    ≡(□▽)⊙¤⊞≥ # table positions × possible indices
+    \⍚(▽⊸>⊢)  # filter each position by prev. chosen index
+    ⊏≡◇⊢      # select digits by chosen indices
+  )
+  F ← /+⋕≡/◇⊂°⋕ ≡MaxSeq Parse
+
+  ⍤⤙=3121910778619 F Ex   # passed
+  ⍤⤙=167523425665348 F In # passed
+
+  # Observations:
+
+  # - Generalizing from part 1, digits of a lower (index) joltage position should always (if possible) be greater than the higher ones.
+  # - If not possible, the next greatest possible digit should be chosen, which may be greater than a previous lower position.
+  # - A digit of index i is possible for the j’th position of the joltage output, if i >= the previous chosen index and there are enough digits left to fill the n-j remaining joltage positions.
+
+  # My approach:
+
+  # As with part 1, the sort indices were my starting point.
+  # To make sure the selected digits fit with the remaining positions of the number, I calculated the digits that remain for each sort index as well as the remaining digits from each position in the number that is to be assembled.
+  # This allowed me to create a table that shows what indices are possible to select for each position.
+  # With a scan, I could then choose the first index (= highest digit) for each position and filter out greater or equal indices for the next position, from which again the first index is chosen.
+  # This procedure follows my observations above. I was nervous if it would have to be iterated in case the last positions could not be filled, which luckily was not the case.
 └─╴
